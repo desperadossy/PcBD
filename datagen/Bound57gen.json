@@ -1,0 +1,14 @@
+
+{
+    "TOF_image_width": 640,
+    "TOF_image_height": 480,
+    "Proj_image_width": 2560,
+    "Proj_image_height": 1440,
+    "camera_dist_min": 1.25,
+    "camera_dist_max": 3.0,
+    "camera_zfar": 5.0,
+    "view_num": 8,
+    "source_dir": "/root/ShapeNettest",
+    "target_dir": "/root/Bound57"
+}
+

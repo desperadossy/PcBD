@@ -1,0 +1,16 @@
+dataset : {
+  train : { _base_: /root/PcDB/cfgs/dataset_configs/Bound57.yaml, 
+            others: {subset: 'train'}},
+  val : { _base_: /root/PcDB/cfgs/dataset_configs/Bound57.yaml, 
+            others: {subset: 'val'}},
+  test : { _base_: /root/PcDB/cfgs/dataset_configs/Bound57.yaml, 
+            others: {subset: 'test'}}}
+            
+model : {
+  NAME: PCDNF
+}
+total_bs : 7
+step_per_update : 1
+max_epoch : 600
+
+consider_metric: CDL1

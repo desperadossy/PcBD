@@ -1,0 +1,31 @@
+optimizer : {
+  type: Adam,
+  kwargs: {
+  lr : 0.0005,
+  weight_decay : 0
+}}
+scheduler: {
+  type: LambdaLR,
+  kwargs: {
+  decay_step: 10,
+  lr_decay: 0.5,
+  lowest_decay: 0.02  # min lr = lowest_decay * lr
+}}
+
+dataset : {
+  train : { _base_: /root/PcDB/cfgs/dataset_configs/Bound57.yaml, 
+            others: {subset: 'train'}},
+  val : { _base_: /root/PcDB/cfgs/dataset_configs/Bound57.yaml, 
+            others: {subset: 'val'}},
+  test : { _base_: /root/PcDB/cfgs/dataset_configs/Bound57.yaml, 
+            others: {subset: 'test'}}}
+            
+model : {
+  NAME: DMRDeNoise
+}
+
+total_bs : 7
+step_per_update : 1
+max_epoch : 600
+
+consider_metric: CDL1

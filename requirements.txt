@@ -1,0 +1,18 @@
+argparse
+easydict
+einops
+h5py
+ninja
+open3d
+opencv-python
+Pillow
+PyYAML
+pytorch3d # If fails, try running: pip install "git+https://github.com/facebookresearch/pytorch3d.git"
+scipy
+softmax-one
+tensorboardX
+timm==0.4.5 
+torch_cluster
+torch_geometric
+tqdm
+transforms3d

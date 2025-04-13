@@ -1,0 +1,7 @@
+NAME: Bound57SingleCategory
+CATEGORY_FILE_PATH: data/Bound57/Bound57.json
+N_POINTS: 4096
+N_RENDERINGS: 8
+INPUT_POINTS_PATH: data/Bound57/%s/02691156/%s/%02d/input.pcd
+LABEL_PATH: data/Bound57/%s/02691156/%s/%02d/label.npy
+GT_PATH: data/Bound57/%s/02691156/%s/%02d/gt.pcd
