@@ -1,10 +1,11 @@
 dataset : {
-  train : { _base_: /root/PcDB/cfgs/dataset_configs/Bound57.yaml, 
+  train : { _base_: /root/PcBD/cfgs/dataset_configs/Bound57.yaml, 
             others: {subset: 'train'}},
-  val : { _base_: /root/PcDB/cfgs/dataset_configs/Bound57.yaml, 
+  val : { _base_: /root/PcBD/cfgs/dataset_configs/Bound57.yaml, 
             others: {subset: 'val'}},
-  test : { _base_: /root/PcDB/cfgs/dataset_configs/Bound57.yaml, 
+  test : { _base_: /root/PcBD/cfgs/dataset_configs/Bound57.yaml, 
             others: {subset: 'test'}}}
+            
             
             
 model : {
