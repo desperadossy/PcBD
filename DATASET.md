@@ -65,9 +65,7 @@ Edit the generation configuration file at **`datagen/Bound57gen.json`** to adjus
 
 ### Step 4: Generate the dataset
 
-Once you have completed the configuration:  
-
-Run the full dataset generation pipeline with:
+Once you have completed the configuration, run the full dataset generation pipeline with:
 
 ```bash
 python datagen.py
@@ -77,8 +75,6 @@ This script will:
 - Process all categories and models from the source_dir 
 - Create multi-view point cloud data under data/Bound57/train, val, and test  
 
----
-
 Before running the full generator, you can test the pipeline using a single model:
 
 ```bash
@@ -86,7 +82,25 @@ python datagen/singledatagen.py
 ```
 This uses the example model located at **`datagen/example`**. The results will be saved in the same folder.
 
-To use your own .obj file, modify the following line in singledatagen.py:
+To use your own .obj file, modify the following line in **`datagen/singledatagen.py`**:
 ```bash
 object_file_path = "your_path/your_model.obj"
 ```
+---
+
+### Step 6: Generate dataset JSON
+
+Once all of the data is generated, create the dataset metadata file:
+
+```bash
+python datagen/jsongen.py
+```
+This will generate: **`data/Bound57/Bound57.json`**
+
+This file contains:  
+
+- A list of all samples  
+- Their category, model ID  
+- Train/val/test split  
+
+The dataset loader will use this JSON to index and organize the data.
