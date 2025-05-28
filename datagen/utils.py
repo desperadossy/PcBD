@@ -29,17 +29,17 @@ def savepcd(path, cloud):
     pc.points = o3d.utility.Vector3dVector(cloud)
     o3d.io.write_point_cloud(path, pc)
 
-def duo_pc_normalize(pc, bound):
-
-    coords = pc[:,:3]
-    centroid = np.mean(coords, axis=0)
-    coords = coords - centroid
-    m = np.max(np.sqrt(np.sum(coords**2, axis=1)))
-    coords = coords / (2*m)
-    pc[:,:3]=coords
-    bound = bound - centroid
-    bound = bound / (2*m)
-    return pc, bound
+def multi_pc_normalize(*pcs):
+    coords_ref = pcs[0][:, :3]
+    centroid = np.mean(coords_ref, axis=0)
+    centered = coords_ref - centroid
+    m = np.max(np.sqrt(np.sum(centered ** 2, axis=1)))
+    normed_pcs = []
+    for pc in pcs:
+        pc_copy = pc.copy()
+        pc_copy[:, :3] = (pc_copy[:, :3] - centroid) / (2 * m)
+        normed_pcs.append(pc_copy)
+    return normed_pcs
 
 from scipy.spatial import KDTree
 """
