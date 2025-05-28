@@ -17,12 +17,12 @@ It is suitable for research in wind tunnel experiments, depth sensor modeling, a
 
 ---
 
-##  Included Data
+##  Available Data
 Generated dataset available at: https://ssy-pcdatasets.oss-cn-hangzhou.aliyuncs.com/Bound57  
 The downloaded Bound57 dataset contains the following files:
 
 - `input.pcd`: Noisy point cloud, typically from a simulated Time-of-Flight (ToF) camera  
-- `gt.pcd`: Ground truth clean boundary, generated from orthographic projection  
+- `gt.pcd`: Ground truth smoothed boundary, generated from orthographic projection  
 - `label.npy`: Per-point labels including **outlier** and **projection boundary** annotations
 
 > Currently, only labels for outliers, projected boundaries, and smoothed boundaries are included.
@@ -39,4 +39,24 @@ Please follow instructions in the [`README.md`](README.md) to download and extra
 
 - [https://huggingface.co/datasets/ShapeNet/ShapeNetCore-archive/tree/main](https://huggingface.co/datasets/ShapeNet/ShapeNetCore-archive/tree/main)
 
-The expected structure after extraction:
+The expected structure after extraction:  
+ data/ShapeNetCore/  
+ ├── 02691156/  
+ │ ├── 1a6ad7a24bb89733f412783097373bdc/  
+ │ │ └── model.obj  
+ │ ├── ...  
+ ├── 02958343/  
+ │ ├── <model_id>/   
+ │ │ └── model.obj
+ ...  
+
+---
+
+### Step 2: Modify Configuration
+
+Edit the generation configuration file at: datagen/Bound57gen.json to adjust:
+- complete_points
+- number of points of view  
+- camera distance ranges  
+- camera pixel size
+- what file to generate 
