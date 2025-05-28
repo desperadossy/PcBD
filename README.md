@@ -55,11 +55,11 @@ python data/download_bound57.py
 
 You can also generate your own customized dataset using ShapeNet as source:
 
-1. Download the archive ShapeNetCore.v1.zip from Hugging Face:
+1. Download the archive ShapeNetCore.v1.zip from Hugging Face:  
   https://huggingface.co/datasets/ShapeNet/ShapeNetCore-archive/tree/main
 
-2. Unzip the dataset into the following path:
+2. Unzip the dataset into the following path:  
  ./data/ShapeNetCore.v1/
 
-3. Then, refer to the instructions in DATASET.md to convert ShapeNet models into PcBD-compatible point cloud format and label structure.
- This allows you to flexibly construct datasets tailored to your application scenarios, including boundary and outlier labels for any ShapeNet category.
+3. Then, refer to the instructions in DATASET.md to convert the ShapeNet model to various point cloud data and true labels provided by the Bound57 model.  
+ In this way, you can flexibly build a dataset suitable for your application scenario, including point cloud reconstruction, outlier filtering, denoising, point cloud upsampling, and boundary extraction.
