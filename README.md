@@ -32,3 +32,15 @@ Researchers can:
 ```bash
 git clone https://github.com/desperadossy/PcBD.git
 cd PcBD
+```
+
+### 2. Install dependencies
+bash
+```bash
+pip install -r requirements.txt
+cd PcBD
+```
+
+### 3. Download and prepare the dataset
+
+Download the Bound57 dataset by running:
