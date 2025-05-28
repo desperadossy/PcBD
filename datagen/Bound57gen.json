@@ -8,7 +8,7 @@
     "camera_dist_max": 3.0,
     "camera_zfar": 5.0,
     "view_num": 8,
-    "source_dir": "/root/ShapeNettest",
-    "target_dir": "/root/Bound57"
+    "source_dir": "/root/data/ShapeNetCore",
+    "target_dir": "/root/data/Bound57"
 }
 
