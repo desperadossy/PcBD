@@ -116,7 +116,9 @@ cfgs/
 │ ├── Bound57.yaml # Full dataset configuration  
 │ └── Bound57SingleCategory.yaml# For training on one category only  
 
-### 5. Train the model
+---
+
+## Train a model
 
 You can start training using the provided shell script and YAML configuration:
 
@@ -126,7 +128,9 @@ bash ./scripts/train.sh 0 --config ./cfgs/Bound57_models/PcBD.yaml --exp_name ex
 
 0 refers to the GPU ID. You can change it to 1, 2, etc. depending on your hardware.
 
-### 6. Test the model
+---
+
+## Test a model
 
 To evaluate a trained model, use the following command:
 
@@ -143,3 +147,14 @@ For models with a trained checkpoint, replace both the .pth and .yaml:
 For models that do not require training (e.g., SOR):  
 keep --ckpts unchanged (e.g., a dummy path). The system will automatically skip model loading.  
 Just modify the YAML config file to select the correct method and dataset.
+
+---
+
+##  Test a single object
+
+You can test a single point cloud object using:
+
+```bash
+python test_single_object.py
+```
+This script loads a pre-trained model and evaluates it on a single input point cloud.
