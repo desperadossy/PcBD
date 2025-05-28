@@ -59,7 +59,7 @@ You can also generate your own customized dataset using ShapeNet as source:
   https://huggingface.co/datasets/ShapeNet/ShapeNetCore-archive/tree/main
 
 2. Unzip the dataset into the following path:  
-   ./data/ShapeNetCore/  
+   **`./data/ShapeNetCore/`** 
  To generate your own dataset from ShapeNetCore.v1, please ensure the unzipped directory follows this structure:  
  data/ShapeNetCore/  
  ├── 02691156/  
