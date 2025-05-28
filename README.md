@@ -61,5 +61,4 @@ You can also generate your own customized dataset using ShapeNet as source:
 2. Unzip the dataset into the following path:  
  ./data/ShapeNetCore.v1/
 
-3. Then, refer to the instructions in DATASET.md to convert the ShapeNet model to various point cloud data and true labels provided by the Bound57 model.  
- In this way, you can flexibly build a dataset suitable for your application scenario, including point cloud reconstruction, outlier filtering, denoising, point cloud upsampling, and boundary extraction.
+3. Then, refer to the instructions in DATASET.md to convert the ShapeNet model to various point cloud data and true labels provided by the Bound57 model. In this way, you can flexibly build a dataset suitable for your application scenario, including point cloud reconstruction, outlier filtering, denoising, point cloud upsampling, and boundary extraction.
