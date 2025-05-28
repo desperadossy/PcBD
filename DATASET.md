@@ -54,7 +54,7 @@ The expected structure after extraction:
 
 ### Step 2: Modify Configuration
 
-Edit the generation configuration file at: datagen/Bound57gen.json to adjust:
+Edit the generation configuration file at **`datagen/Bound57gen.json`** to adjust:
 - complete_points
 - number of points of view  
 - camera distance ranges  
