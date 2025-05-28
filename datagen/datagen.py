@@ -40,10 +40,39 @@ def obj_projection(object_file_path, target_folder_path, args):
     proj_depth = gen_depth_map(mesh, projcamera, args['Proj_image_height'], args['Proj_image_width'], device)
     TOF_contours = depth_to_contour(TOF_depth)
     proj_contours = depth_to_contour(proj_depth)
-    TOF_pc = back_projection(TOFcamera, TOF_depth, TOF_contours, device, zfar=args['camera_zfar'])
+    TOF_pc_raw = back_projection(TOFcamera, TOF_depth, TOF_contours, device, zfar=args['camera_zfar'])
     proj_pc = back_projection(projcamera, proj_depth, proj_contours, device, zfar=args['camera_zfar'], pc=False)
-    only_noised, TOF_pc = noising(sample_edge(TOF_pc))
-    TOF_pc, proj_pc = multi_pc_normalize(TOF_pc, proj_pc)
+    only_noised, TOF_pc = noising(sample_edge(TOF_pc_raw))
+    ups_pc = None
+    if args.get("upsample", False):
+        ups_pc = back_projection(projcamera, proj_depth, proj_contours, device, zfar=args['camera_zfar'], pc=True)
+    if args.get("completion", False):
+        TOF_pc_completion = TOF_pc_raw.copy()
+    else:
+        TOF_pc_completion = None
+    pc_list = [TOF_pc, proj_pc]
+    if args.get("de-noising", False):
+        pc_list.append(only_noised)
+    if ups_pc is not None:
+        pc_list.append(ups_pc)
+    if TOF_pc_completion is not None:
+        pc_list.append(TOF_pc_completion)
+    normed_pcs = multi_pc_normalize(*pc_list)
+    TOF_pc, proj_pc = normed_pcs[0], normed_pcs[1]
+
+    i = 2
+    if args.get("de-noising", False):
+        only_noised = normed_pcs[i]
+        savepcd(os.path.join(target_folder_path, "only_noised.pcd"), only_noised[:, :3])
+        i += 1
+    if ups_pc is not None:
+        ups_pc = normed_pcs[i]
+        savepcd(os.path.join(target_folder_path, "ups_pc.pcd"), ups_pc[:, :3])
+        i += 1
+    if TOF_pc_completion is not None:
+        TOF_pc_completion = normed_pcs[i]
+        savepcd(os.path.join(target_folder_path, "completion_input.pcd"), TOF_pc_completion[:, :3])
+        
     savepcd(os.path.join(target_folder_path, "input.pcd"), TOF_pc[:, :3])
     np.save(os.path.join(target_folder_path, "label.npy"), TOF_pc[:, 3:5])
     savepcd(os.path.join(target_folder_path, "gt.pcd"), proj_pc)
