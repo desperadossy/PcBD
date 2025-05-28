@@ -63,6 +63,41 @@ You can also generate your own customized dataset using ShapeNet as source:
 
 3. Then, refer to the instructions in DATASET.md to convert the ShapeNet model to various point cloud data and true labels provided by the Bound57 model. In this way, you can flexibly build a dataset suitable for your application scenario, including point cloud reconstruction, outlier filtering, denoising, point cloud upsampling, and boundary extraction.
 
+#### Dataset Structure
+
+After downloading and extracting the Bound57 dataset, or manually generating your own dataset, the directory structure is as follows:  
+data/Bound57/  
+├── Bound57.json # Dataset metadata (split info, etc.)  
+├── train/  
+│ └── 02691156/ # Category ID  
+│ │ └── 1a6ad7a24bb89733.../ # Model ID  
+│ │ │ ├── 00/  
+│ │ │ │ ├── input.pcd  
+│ │ │ │ ├── gt.pcd  
+│ │ │ │ └── label.npy  
+│ │ │ ├── 01/  
+│ │ │ └── ...  
+│ │ └── ...  
+│ └── ...  
+├── val/  
+│ └── 02691156/  
+│ │ └── xxx.../  
+│ │ │ └── 00/  
+│ │ │ ├── input.pcd  
+│ │ │ ├── gt.pcd  
+│ │ │ └── label.npy  
+│ │ └── ...  
+│ └── ...  
+└── test/  
+│ └── 02691156/  
+│ │ └── xxx.../  
+│ │ │ └── 00/  
+│ │ │ ├── input.pcd  
+│ │ │ ├── gt.pcd  
+│ │ │ └── label.npy  
+│ │ └── ...  
+│ └── ...  
+
 ### 4. Modify configuration files
 
 You can configure both the dataset and model settings by editing the `.yaml` files under the following directory:
