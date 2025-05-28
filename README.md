@@ -82,3 +82,21 @@ bash ./scripts/train.sh 0 --config ./cfgs/Bound57_models/PcBD.yaml --exp_name ex
 ```
 
 0 refers to the GPU ID. You can change it to 1, 2, etc. depending on your hardware.
+
+### 6. Test the model
+
+To evaluate a trained model, use the following command:
+
+```bash
+bash ./scripts/test.sh 0 --ckpts /root/PcBD/checkpoints/PcBD.pth --config /root/PcBD/cfgs/Bound57_models/PcBD.yaml --exp_name example
+```
+
+For models with a trained checkpoint, replace both the .pth and .yaml:
+```bash
+--ckpts /your/path/to/ModelName.pth
+--config ./cfgs/Bound57_models/ModelName.yaml
+```
+
+For models that do not require training (e.g., SOR):  
+keep --ckpts unchanged (e.g., a dummy path). The system will automatically skip model loading.  
+Just modify the YAML config file to select the correct method and dataset.
