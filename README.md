@@ -66,12 +66,12 @@ You can also generate your own customized dataset using ShapeNet as source:
 ### 4. Modify configuration files
 
 You can configure both the dataset and model settings by editing the `.yaml` files under the following directory:
-cfgs/
-├── Bound57_models/
-│ └── xxx.yaml # Network architecture and training parameters
-├── dataset_configs/
-│ ├── Bound57.yaml # Full dataset configuration
-│ └── Bound57SingleCategory.yaml# For training on one category only
+cfgs/  
+├── Bound57_models/  
+│ └── xxx.yaml # Network architecture and training parameters  
+├── dataset_configs/  
+│ ├── Bound57.yaml # Full dataset configuration  
+│ └── Bound57SingleCategory.yaml# For training on one category only  
 
 ### 5. Train the model
 
