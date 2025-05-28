@@ -59,25 +59,21 @@ You can also generate your own customized dataset using ShapeNet as source:
   https://huggingface.co/datasets/ShapeNet/ShapeNetCore-archive/tree/main
 
 2. Unzip the dataset into the following path:  
- ./data/ShapeNetCore/
-
-To generate your own dataset from ShapeNetCore.v1, please ensure the unzipped directory follows this structure:  
-
-data/ShapeNetCore/  
-├── 02691156/  
-│ ├── 1a6ad7a24bb89733f412783097373bdc/  
-│ │ └── model.obj  
-│ ├── ...  
-├── 02958343/  
-│ ├── <model_id>/  
-│ │ └── model.obj  
-...
+ ./data/ShapeNetCore/  
+ To generate your own dataset from ShapeNetCore.v1, please ensure the unzipped directory follows this structure:  
+ data/ShapeNetCore/  
+ ├── 02691156/  
+ │ ├── 1a6ad7a24bb89733f412783097373bdc/  
+ │ │ └── model.obj  
+ │ ├── ...  
+ ├── 02958343/  
+ │ ├── <model_id>/   
+ │ │ └── model.obj
+ ...
 
 4. Then, refer to the instructions in DATASET.md to convert the ShapeNet model to various point cloud data and true labels provided by the Bound57 model. In this way, you can flexibly build a dataset suitable for your application scenario, including point cloud reconstruction, outlier filtering, denoising, point cloud upsampling, and boundary extraction.
 
-#### Dataset Structure
-
-After downloading and extracting the Bound57 dataset, or manually generating your own dataset, the directory structure is as follows:  
+5. After downloading and extracting the Bound57 dataset, or manually generating your own dataset, the directory structure is as follows:  
 data/Bound57/  
 ├── Bound57.json # Dataset metadata (split info, etc.)  
 ├── train/  
