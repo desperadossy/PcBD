@@ -35,12 +35,31 @@ cd PcBD
 ```
 
 ### 2. Install dependencies
-bash
+
 ```bash
 pip install -r requirements.txt
 cd PcBD
 ```
 
-### 3. Download and prepare the dataset
+### 3. Prepare the dataset
 
-Download the Bound57 dataset by running:
+#### Option 1: Download the provided Bound57 dataset
+
+Run the following script to automatically download and extract the Bound57 dataset (`.tar.gz` format):
+
+```bash
+python data/download_bound57.py
+```
+
+#### Option 2: Generate your own dataset based on ShapeNetCore.v1
+
+You can also generate your own customized dataset using ShapeNet as source:
+
+1. Download the archive ShapeNetCore.v1.zip from Hugging Face:
+  https://huggingface.co/datasets/ShapeNet/ShapeNetCore-archive/tree/main
+
+2. Unzip the dataset into the following path:
+ ./data/ShapeNetCore.v1/
+
+3. Then, refer to the instructions in DATASET.md to convert ShapeNet models into PcBD-compatible point cloud format and label structure.
+ This allows you to flexibly construct datasets tailored to your application scenarios, including boundary and outlier labels for any ShapeNet category.
