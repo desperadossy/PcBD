@@ -9,6 +9,9 @@
     "camera_zfar": 5.0,
     "view_num": 8,
     "source_dir": "/root/data/ShapeNetCore",
-    "target_dir": "/root/data/Bound57"
+    "target_dir": "/root/data/Bound57",
+    "up_sample": False,
+    "completion": False,
+    "de-noising": False
 }
 
