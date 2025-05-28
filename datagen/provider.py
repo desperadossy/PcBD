@@ -234,7 +234,6 @@ def noising(point_cloud, noise_ratio=np.random.uniform(0.05, 0.1), noise_level_r
     spatial_noise = np.random.normal(0, (point_cloud[:, 2]*noise_level).reshape(-1,1), size=(n, 3))
     noisy_point_cloud[:, :3] += spatial_noise
 
-
     # 随机选择 m 个点作为噪声点的基准位置
     base_points_indices = np.random.choice(n, m, replace=False)
     base_points = point_cloud[base_points_indices, :3]
@@ -254,12 +253,12 @@ def noising(point_cloud, noise_ratio=np.random.uniform(0.05, 0.1), noise_level_r
     additional_noise_points = np.hstack((pure_noise_points, noise_boundary_indicator, pure_noise_indicator))
 
     # 为原始噪声点云添加纯噪声指示器列（全零）
-    noisy_point_cloud = np.hstack((noisy_point_cloud, np.zeros((n, 1))))
+    final_point_cloud = np.hstack((noisy_point_cloud, np.zeros((n, 1))))
 
     # 将原始噪声点云与额外的纯噪声点合并
-    final_point_cloud = np.vstack((noisy_point_cloud, additional_noise_points))
+    final_point_cloud = np.vstack((final_point_cloud, additional_noise_points))
 
-    return final_point_cloud
+    return noisy_point_cloud, final_point_cloud
 
 if __name__ == '__main__':
     data = IO.get('05.pcd').astype(np.float32)
