@@ -179,21 +179,32 @@ if __name__ == '__main__':
     TOF_contours = depth_to_contour(TOF_depth, "TOF")
     proj_contours = depth_to_contour(proj_depth, "proj")
 
-    TOF_pc = back_projection(TOFcamera, TOF_depth, TOF_contours, device, zfar)
-    savepcd(os.path.join(target_folder_path, "TOF_pc.pcd"), TOF_pc[:, :3])
-    
+    TOF_pc_raw = back_projection(TOFcamera, TOF_depth, TOF_contours, device, zfar)
+    savepcd(os.path.join(target_folder_path, "TOF_pc_raw.pcd"), TOF_pc_raw[:, :3])
+
+    # Projected boundary ground truth
     proj_pc = back_projection(projcamera, proj_depth, proj_contours, device, zfar, pc=False)
     savepcd(os.path.join(target_folder_path, "proj_pc.pcd"), proj_pc[:, :3])
 
-    denoised_gt = back_projection(projcamera, proj_depth, proj_contours, device, zfar, pc=True)
-    savepcd(os.path.join(target_folder_path, "denoised_gt.pcd"), denoised_gt[:, :3])
-    
-    sampled_pc = sample_edge(TOF_pc)
+    # For upsampling or reference (dense ground truth)
+    ups_pc = back_projection(projcamera, proj_depth, proj_contours, device, zfar, pc=True)
+    savepcd(os.path.join(target_folder_path, "ups_pc.pcd"), ups_pc[:, :3])
+
+    # Sample edge and add noise
+    sampled_pc = sample_edge(TOF_pc_raw)
     savepcd(os.path.join(target_folder_path, "sampled_pc.pcd"), sampled_pc[:, :3])
-    TOF_pc = noising(sampled_pc)
+
+    only_noised, TOF_pc = noising(sampled_pc)
+    savepcd(os.path.join(target_folder_path, "only_noised.pcd"), only_noised[:, :3])
     savepcd(os.path.join(target_folder_path, "TOF_pc_noised.pcd"), TOF_pc[:, :3])
 
-    TOF_pc, proj_pc = duo_pc_normalize(TOF_pc, proj_pc)
+    # Generate per-point labels (TOF_pc shape: [N, 5], label in [:, 3:5])
+    np.save(os.path.join(target_folder_path, "label.npy"), TOF_pc[:, 3:5])
+
+    # Normalize all results together
+    TOF_pc, proj_pc, ups_pc, only_noised = multi_pc_normalize(TOF_pc, proj_pc, ups_pc, only_noised)
+
+    # Final outputs for standard pipeline
     savepcd(os.path.join(target_folder_path, "input.pcd"), TOF_pc[:, :3])
     savepcd(os.path.join(target_folder_path, "gt.pcd"), proj_pc)
 
