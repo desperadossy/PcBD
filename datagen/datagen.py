@@ -14,7 +14,7 @@ import warnings
 #warnings.filterwarnings("ignore")
 import concurrent.futures
 import multiprocessing
-from utils import duo_pc_normalize, savepcd, gen_depth_map, depth_to_contour, back_projection
+from utils import multi_pc_normalize, savepcd, gen_depth_map, depth_to_contour, back_projection
 from provider import sample_edge, noising
 
 def obj_sampling(path_obj, target_folder_path, args):
@@ -42,8 +42,8 @@ def obj_projection(object_file_path, target_folder_path, args):
     proj_contours = depth_to_contour(proj_depth)
     TOF_pc = back_projection(TOFcamera, TOF_depth, TOF_contours, device, zfar=args['camera_zfar'])
     proj_pc = back_projection(projcamera, proj_depth, proj_contours, device, zfar=args['camera_zfar'], pc=False)
-    TOF_pc = noising(sample_edge(TOF_pc))
-    TOF_pc, proj_pc = duo_pc_normalize(TOF_pc, proj_pc)
+    only_noised, TOF_pc = noising(sample_edge(TOF_pc))
+    TOF_pc, proj_pc = multi_pc_normalize(TOF_pc, proj_pc)
     savepcd(os.path.join(target_folder_path, "input.pcd"), TOF_pc[:, :3])
     np.save(os.path.join(target_folder_path, "label.npy"), TOF_pc[:, 3:5])
     savepcd(os.path.join(target_folder_path, "gt.pcd"), proj_pc)
