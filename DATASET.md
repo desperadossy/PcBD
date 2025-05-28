@@ -59,4 +59,34 @@ Edit the generation configuration file at **`datagen/Bound57gen.json`** to adjus
 - number of points of view  
 - camera distance ranges  
 - camera pixel size
-- what file to generate 
+- what file to generate
+
+---
+
+### Step 4: Generate the dataset
+
+Once you have completed the configuration:  
+
+Run the full dataset generation pipeline with:
+
+```bash
+python datagen.py
+```
+This script will:  
+
+- Process all categories and models from the source_dir 
+- Create multi-view point cloud data under data/Bound57/train, val, and test  
+
+---
+
+Before running the full generator, you can test the pipeline using a single model:
+
+```bash
+python datagen/singledatagen.py
+```
+This uses the example model located at **`datagen/example`**. The results will be saved in the same folder.
+
+To use your own .obj file, modify the following line in singledatagen.py:
+```bash
+object_file_path = "your_path/your_model.obj"
+```
